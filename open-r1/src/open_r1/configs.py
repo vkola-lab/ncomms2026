@@ -210,7 +210,7 @@ class GRPOConfig(open_r1.grpo_config.GRPOConfig):
         metadata={"help": "Flag to add self-certainty advantage http://arxiv.org/abs/2505.12346."},
     )
     
-    lambda_sce: int = field(
+    lambda_sce: float = field(
         default=0.0,
         metadata={"help": "Multiplicative factor to combine SCE with reward advantage."},
     )
