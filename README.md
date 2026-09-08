@@ -1,4 +1,4 @@
-# LUNAR: Domain-Adapted Language Model for Various Dementias
+# 	Domain-adapted language model for Alzheimer's disease and related dementias
 
 <p align="center">
   <a href="https://www.medrxiv.org/content/10.64898/2026.03.17.26348154v1"><img src="https://img.shields.io/badge/Paper-medRxiv-B31B1B?style=flat-square" alt="Paper"></a>
