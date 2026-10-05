@@ -14,7 +14,7 @@ LLM:
 # passed to vllm.SamplingParams, you can use any accepted keyword argument
 sampling_params:
   n: 5 # Number of sequences to generate per prompt
-  temperature: 1 # recommended
+  temperature: 1 # temperature for generation
   top_p: 1 # consider candidate tokens until the cumulative sum of their probabilities is top_p
   max_tokens: 10000 # maximum number of tokens to generate
 

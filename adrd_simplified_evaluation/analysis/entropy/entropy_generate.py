@@ -1,4 +1,3 @@
-
 import os
 os.environ['VLLM_SKIP_P2P_CHECK'] = "1"
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
@@ -34,23 +33,30 @@ n_devices = 1
 n_cases = 1000
 enable_lora = False
 
-# model_id = '/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample'
+# model_id = '../../../../../adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample'
 # save_name = "entropies/oversample.json"
 
-# model_id = '/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_sce_tanh'
+# model_id = '../../../../../adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_sce_tanh'
 # save_name = "entropies/oversample_sce_tanh.json"
 
-# model_id = '/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_dedup'
+# model_id = '../../../../../adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_dedup'
 # save_name = "entropies/oversample_dedup.json"
 
-# model_id = '/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_dedup_sce_tanh'
+# model_id = '../../../../../adrd-foundation-model/open-r1/ckpt/ckpt_access/qwen25_3B_drgrpo_gp16_nacc_inc_oversample_dedup_sce_tanh'
 # save_name = "entropies/oversample_dedup_sce_tanh.json"
 
-# model_id = 'Qwen/Qwen2.5-3B-Instruct'
-# save_name = "entropies/q3b.json"
+model_id = 'Qwen/Qwen2.5-3B-Instruct'
+save_name = "entropies/q3b.json"
 
-model_id = 'Qwen/Qwen2.5-7B-Instruct'
-save_name = "entropies/q7b.json"
+# model_id = 'Qwen/Qwen2.5-7B-Instruct'
+# save_name = "entropies/q7b.json"
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_id", type=str, default=None)
+    parser.add_argument("--save_name", type=str, default=None)
+    return parser.parse_args()
 
 
 GRPO_TEMPLATE = """Question: {question}.
@@ -63,35 +69,34 @@ SYSTEM_PROMPT = "Please reason step by step, and put your final answer within \\
 
 data_paths = {
     "nacc": {
-        "test_cog": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_cog.csv",
-        "test_etpr": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_etpr.csv",
-        "test_pet": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_pet.csv",
-        "test_csf": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_csf.csv",
-        "test_dat": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_dat.csv",
-        "test_np_one": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_np_one.csv",
+        "test_cog": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_cog.csv",
+        "test_etpr": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_etpr.csv",
+        "test_pet": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_pet.csv",
+        "test_csf": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_csf.csv",
+        "test_dat": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_dat.csv",
+        "test_np_one": "../../../../../adrd-foundation-model/data/nacc/training_data/testing_data_grpo/with_summary/test_np_one.csv",
     },
     "adni":{
-        "test_cog": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_cog.csv",
-        "test_etpr": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_etpr.csv",
-        "test_pet": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_pet.csv",
-        "test_csf": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_csf.csv",
+        "test_cog": "../../../../../adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_cog.csv",
+        "test_etpr": "../../../../../adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_etpr.csv",
+        "test_pet": "../../../../../adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_pet.csv",
+        "test_csf": "../../../../../adrd-foundation-model/data/adni/training_data/testing_data_grpo/with_summary/test_csf.csv",
     },
     "nifd":{
-        "test_cog": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nifd/training_data/testing_data_grpo/with_summary/test_cog.csv",
-        "test_etpr": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/nifd/training_data/testing_data_grpo/with_summary/test_etpr.csv",
+        "test_cog": "../../../../../adrd-foundation-model/data/nifd/training_data/testing_data_grpo/with_summary/test_cog.csv",
+        "test_etpr": "../../../../../adrd-foundation-model/data/nifd/training_data/testing_data_grpo/with_summary/test_etpr.csv",
     },
     "ppmi":{
-        "test_cog": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_cog.csv",
-        "test_etpr": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_etpr.csv",
-        "test_dat": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_dat.csv",
+        "test_cog": "../../../../../adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_cog.csv",
+        "test_etpr": "../../../../../adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_etpr.csv",
+        "test_dat": "../../../../../adrd-foundation-model/data/ppmi/training_data/testing_data_grpo/with_summary/test_dat.csv",
     },
-    "brainlat":{
-        "test_cog": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/brainlat/training_data/testing_data_grpo/with_summary/test_cog.csv",
-        "test_etpr": "/projectnb/vkolagrp/skowshik/foundation_adrd/adrd-foundation-model/data/brainlat/training_data/testing_data_grpo/with_summary/test_etpr.csv",
+    "brainlat":{ 
+        "test_cog": "../../../../../adrd-foundation-model/data/brainlat/training_data/testing_data_grpo/with_summary/test_cog.csv",
+        "test_etpr": "../../../../../adrd-foundation-model/data/brainlat/training_data/testing_data_grpo/with_summary/test_etpr.csv",
     }
 }
 data_subset_path = "random_test_data.csv"
-
 # Load model
 def load_model(model_id):
     """Load VLLM model and Huggingface tokenizer."""
@@ -182,7 +187,7 @@ def compute_entropy_from_logprobs(logprobs_list):
     return entropies
 
 
-def main():
+def main(model_id=model_id, save_name=save_name):
     # Load model
     print("Loading model")
     llm, tokenizer = load_model(model_id)
@@ -199,7 +204,10 @@ def main():
         for dataset_name, file_dict in tqdm(data_paths.items()):
             dfs = []
             for split_name, file_path in file_dict.items():
-                dfs.append(pd.read_csv(file_path))
+                df_split = pd.read_csv(file_path)
+                df_split["dataset"] = dataset_name
+                df_split["benchmark"] = split_name 
+                dfs.append(df_split)
             # Concatenate all DataFrames for this dataset_name
             loaded_dfs[dataset_name] = pd.concat(dfs, ignore_index=True)
 
@@ -211,7 +219,7 @@ def main():
             test_data_parts.append(df.sample(n=sample_n, random_state=42))  # random_state for reproducibility
 
         test_data = pd.concat(test_data_parts, ignore_index=True).reset_index(drop=True)
-        test_data.to_csv("random_test_data.csv", index=False)
+        test_data.to_csv(data_subset_path, index=False)
 
     # Creating prompts
     print("Creating prompts")
@@ -227,31 +235,31 @@ def main():
         ] for prompt in prompts
     ]
 
-    print("enerating responses")
+    print("Generating responses")
     outputs = get_vllm_summary(llm, tokenizer, messages, max_new_tokens)
 
     print("Getting entropies")
-    entropies = {
-        "entropy": [],
-        "mean": [],
-        "min": [],
-        "max": [],
-    }
-    for output, prompt in zip(outputs, prompts):
+    entropies = {"idx": [], "entropy": [], "mean": [], "min": [], "max": []}
+    for i, (output, prompt) in enumerate(zip(outputs, prompts)):
         gen = output.outputs[0]
-        
         if gen.logprobs:
             entropy = compute_entropy_from_logprobs(gen.logprobs)
-            # print(f"Prompt: {prompt!r}")
+            entropies["idx"].append(i)
             entropies["entropy"].append(entropy)
-            entropies["mean"].append(np.mean(entropy))
-            entropies["min"].append(np.min(entropy))
-            entropies["max"].append(np.max(entropy))
+            entropies["mean"].append(float(np.mean(entropy)))
+            entropies["min"].append(float(np.min(entropy)))
+            entropies["max"].append(float(np.max(entropy)))
+        else:
+            print(f"WARNING: no logprobs for question {i}")
             
     # Save
     print("Saving the file")
+    # Small per-question summary (read by entropy_plot.py) + full per-token file
+    summary = {k: v for k, v in entropies.items() if k != "entropy"}
+    with open(save_name.replace(".json", "_summary.json"), "w") as f:
+        json.dump(summary, f)
     with open(save_name, "w") as f:
-        json.dump(entropies, f, indent=4)
+        json.dump(entropies, f)
 
 
     print(f"Mean: {np.mean(entropies['mean'])}")
@@ -260,6 +268,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    mid = args.model_id if args.model_id is not None else model_id
+    sname = args.save_name if args.save_name is not None else save_name
+    main(model_id=mid, save_name=sname)
 
 

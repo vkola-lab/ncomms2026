@@ -15,14 +15,14 @@ BENCHMARK_LIST = [
     '${benchmarks.base_dir}/nacc_test_updated/test_csf',
     '${benchmarks.base_dir}/nacc_test_updated/test_dat',
     '${benchmarks.base_dir}/nacc_test_updated/test_etpr',
-    '${benchmarks.base_dir}/nacc_test_updated/test_mci',
-    '${benchmarks.base_dir}/nacc_test_updated/test_np',
+    # '${benchmarks.base_dir}/nacc_test_updated/test_mci',
+    # '${benchmarks.base_dir}/nacc_test_updated/test_np',
     '${benchmarks.base_dir}/nacc_test_updated/test_np_mixed',
     '${benchmarks.base_dir}/nacc_test_updated/test_np_one',
     '${benchmarks.base_dir}/nacc_test_updated/test_pet',
     '${benchmarks.base_dir}/nifd_test/test_cog',
     '${benchmarks.base_dir}/nifd_test/test_etpr',
-    '${benchmarks.base_dir}/nifd_test/test_ftld',
+    # '${benchmarks.base_dir}/nifd_test/test_ftld',
     '${benchmarks.base_dir}/ppmi_test/test_cog',
     '${benchmarks.base_dir}/ppmi_test/test_dat',
     '${benchmarks.base_dir}/ppmi_test/test_etpr',
@@ -59,12 +59,13 @@ sampling_params:
   max_tokens: 10000 # maximum number of tokens to generate
 
 prompt:
-  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{}."
+  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{{}}."
   template_style: grpo
 
 benchmarks:
   results_dir: '/projectnb/vkolagrp/projects/adrd_foundation_model/results/training_curve' # Benchmarks outputs will be saved in this directory
   base_dir: "/projectnb/vkolagrp/projects/adrd_foundation_model/benchmarks" # Base directory for benchmarks
+  run_dir: "NACC-3B-OS-SCE" # Run folder
   max_questions: {max_questions} # Read at most this many questions from the benchmark
   benchmark_list:
 {benchmark_list}
@@ -91,11 +92,12 @@ sampling_params:
   top_p: 1 # consider candidate tokens until the cumulative sum of their probabilities is top_p
   max_tokens: 10000 # maximum number of tokens to generate
 prompt:
-  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{}."
+  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{{}}."
   template_style: grpo
 benchmarks:
   results_dir: '/projectnb/vkolagrp/projects/adrd_foundation_model/results/training_curve' # Benchmarks outputs will be saved in this directory
   base_dir: "/projectnb/vkolagrp/projects/adrd_foundation_model/benchmarks" # Base directory for benchmarks
+  run_dir: "NACC-3B-OS-SCE" # Run folder
   max_questions: {max_questions} # Read at most this many questions from the benchmark
   benchmark_list:
 {benchmark_list}
@@ -123,11 +125,12 @@ sampling_params:
   top_p: 1 # consider candidate tokens until the cumulative sum of their probabilities is top_p
   max_tokens: 10000 # maximum number of tokens to generate
 prompt:
-  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{}."
+  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{{}}."
   template_style: grpo
 benchmarks:
   results_dir: '/projectnb/vkolagrp/projects/adrd_foundation_model/results/training_curve' # Benchmarks outputs will be saved in this directory
   base_dir: "/projectnb/vkolagrp/projects/adrd_foundation_model/benchmarks" # Base directory for benchmarks
+  run_dir: "NACC-3B-OS-SCE" # Run folder
   max_questions: {max_questions} # Read at most this many questions from the benchmark
   benchmark_list:
 {benchmark_list}
@@ -156,12 +159,13 @@ sampling_params:
   max_tokens: 10000 # maximum number of tokens to generate
 
 prompt:
-  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{}."
+  system_prompt: "Please reason step by step, and put your final answer within \\\\boxed{{}}."
   template_style: grpo
 
 benchmarks:
   results_dir: '/projectnb/vkolagrp/projects/adrd_foundation_model/results/training_curve' # Benchmarks outputs will be saved in this directory
   base_dir: "/projectnb/vkolagrp/projects/adrd_foundation_model/benchmarks" # Base directory for benchmarks
+  run_dir: "NACC-3B-OS-SCE" # Run folder
   max_questions: {max_questions} # Read at most this many questions from the benchmark
   benchmark_list:
 {benchmark_list}

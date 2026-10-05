@@ -14,7 +14,7 @@
 #$ -pe omp 8
 #$ -l mem_per_core=2G
 #$ -l gpus=1
-#$ -l gpu_c=9 # GPU capability, must be at least 8 for this project
+#$ -l gpu_c=8 # GPU capability, must be at least 8 for this project
 #$ -m bea
 #$-l gpu_type=H200
 #$ -e logs/$JOB_ID.stderr

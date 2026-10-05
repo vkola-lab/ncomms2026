@@ -30,10 +30,11 @@ results/
 save_folder/
 __pycache__/
 *logs*/
-wandb/
+# wandb/
 results/
 figures_all/
-entropies/
+# entropies*/
+full/
 figure4_np_one_lingyi.py
 random_test_data.csv
 token_counts.csv
@@ -95,3 +96,11 @@ venv/
 venvs/
 
 TODO.txt
+changes_made.md
+# plots/
+tmp.txt
+
+figures/
+figures_all/
+plots/
+check*

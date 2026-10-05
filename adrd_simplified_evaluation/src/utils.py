@@ -146,9 +146,12 @@ def run_benchmark(llm, benchmark_path, config):
 
     messages = make_prompts_from_template(problems, config)
     
-    enable_thinking = True if config.enable_thinking is True else None
-
-    outputs = llm.generate(messages, enable_thinking=enable_thinking)
+    if ("enable_thinking" in config) and (config.enable_thinking != None):
+        # enable_thinking = True if config.enable_thinking is True else None
+        outputs = llm.generate(messages, enable_thinking=config.enable_thinking)
+    
+    else:
+        outputs = llm.generate(messages)
 
     return problems, outputs
 

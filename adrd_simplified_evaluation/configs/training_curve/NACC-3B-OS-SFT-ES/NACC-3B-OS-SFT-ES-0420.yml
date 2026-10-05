@@ -45,7 +45,6 @@ benchmarks:
     - '${benchmarks.base_dir}/nacc_test_updated/test_pet'
     - '${benchmarks.base_dir}/nifd_test/test_cog'
     - '${benchmarks.base_dir}/nifd_test/test_etpr'
-    - '${benchmarks.base_dir}/nifd_test/test_ftld'
     - '${benchmarks.base_dir}/ppmi_test/test_cog'
     - '${benchmarks.base_dir}/ppmi_test/test_dat'
     - '${benchmarks.base_dir}/ppmi_test/test_etpr'

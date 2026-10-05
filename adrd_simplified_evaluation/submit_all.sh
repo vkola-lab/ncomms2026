@@ -18,11 +18,15 @@ fi
 for DIR in "$@"; do
     # Find all .yml files in the directory (non-recursive)
     for FILE in "$DIR"/*.yml; do
+        # Skip file if its name contains "qwen7B-nacc"
+        if [[ "$FILE" == *qwen7B-nacc* ]]; then
+            continue
+        fi
+
         # Check if the glob matched any files
         if [ -e "$FILE" ]; then
             echo "Submitting: $FILE"
             qsub run_benchmarks.sh "$FILE"
-            # bash run_benchmarks.sh "$FILE"
         fi
     done
 done
