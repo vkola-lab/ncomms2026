@@ -25,7 +25,6 @@ notebooks/
 tables/
 
 # Intermediate folders
-wandb/
 results/
 save_folder/
 __pycache__/
@@ -38,8 +37,8 @@ full/
 figure4_np_one_lingyi.py
 random_test_data.csv
 token_counts.csv
-*.csv
-*.json
+# *.csv
+# *.json
 
 # Checkpoint
 *ckpt*/
