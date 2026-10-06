@@ -66,6 +66,8 @@ class AnswerExtractor:
 
             # if the directory already contains a processed file, skip the directory
             if not any(jsonl_file.parent.glob('*_extracted_answers_last.parquet')):
+                
+                # print(f"loading results from {jsonl_file}")
 
                 results_df = self.extract_from_file(jsonl_file)
 

@@ -38,24 +38,7 @@ $ qsub extract_answers.sh results/NACC
 
 This script will only extract answers if there is no parquet file in the current directory, to avoid unnecesary work. If you want to re-extract the answers for whatever reason, delete the parquet files and rerun the script.
 
-# Plots
 
-
-<!-- If you also want to compute metrics from these answers (precision, recall, etc.) use 
-
-```
-$ ./compute_metrics.sh
-```
-
-Notice that it it not necessary to `qsub` this, as it does not use an LLM internally. It is a very lightweight operation. If you are going to make figures straight from the parquet files, you can skip this step. -->
-
-Most of the figures are designed to have their own dedicated plot file in `plots` (one script per figure). The results will be saved under `figures`.
-
-<!-- You can run all of them at the same time using 
-
-```
-$ ./make_figures.sh
-```
 
 which also does not require `qsub`. -->
 
@@ -68,11 +51,11 @@ Expand the following block for an example.
 <summary>Example configuration file</summary>
 
 ```
-run_readable_name: "Qwen3-4B" # Will be used to name the results folder
+run_readable_name: "Qwen2.5-3B-Instruct" # Will be used to name the results folder
 
 # passed to vllm.LLM, you can use any accepted keyword argument
 LLM:
-  model: "Qwen/Qwen3-4B" # can be a path
+  model: "Qwen/Qwen2.5-3B-Instruct" # can be a path
   tensor_parallel_size: 1 # Number of GPUs used. Passed to vllm.LLM.tensor_parallel_size. 
 
 # passed to vllm.SamplingParams, you can use any accepted keyword argument
@@ -91,9 +74,8 @@ benchmarks:
   base_dir: "/projectnb/vkolagrp/projects/adrd_foundation_model/benchmarks" # Base directory for benchmarks
   max_questions: 100 # Read at most this many questions from the benchmark, so it's easy to run a subset 
   benchmark_list:
-    - '${benchmarks.base_dir}/nacc_test/test_mci'
-    - '${benchmarks.base_dir}/nacc_test/test_etpr'
-    - '${benchmarks.base_dir}/nacc_test/test_cog'
+    - '${benchmarks.base_dir}/nacc_test_updated/test_etpr'
+    - '${benchmarks.base_dir}/nacc_test_updated/test_cog'
 ```
 
 </details>
@@ -101,4 +83,23 @@ benchmarks:
 
 # How to write your own benchmark
 
-Each benchmark is a JSONL file: each line should be a valid JSON. Each line is expected to have at least the `ID`, `question`, and `options` keys. 
+Each benchmark is a JSONL file: each line should be a valid JSON. Each line is expected to have at least the `ID`, `question`, and `options` keys. If `visit_summary` is available (for clinical tasks), the script uses it.
+
+# Plots
+
+
+<!-- If you also want to compute metrics from these answers (precision, recall, etc.) use 
+
+```
+$ ./compute_metrics.sh
+```
+
+Notice that it it not necessary to `qsub` this, as it does not use an LLM internally. It is a very lightweight operation. If you are going to make figures straight from the parquet files, you can skip this step. -->
+
+Most of the figures are designed to have their own dedicated plot file in `analysis` (one script per figure). The results will be saved under `figures_main`. More details in the README in `analysis` folder.
+
+<!-- You can run all of them at the same time using 
+
+```
+$ ./make_figures.sh
+```
