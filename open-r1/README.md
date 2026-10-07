@@ -60,7 +60,7 @@ The prompt is constructed automatically from:
 2. One of six diagnostic question types, randomly assigned per participant
 3. Randomly shuffled answer choices
 
-It expects the following fields in the dataframe: `visit_summary`, `question`, `options`.
+It expects the following fields in the dataframe: `question` and `options`. If `visit_summary` is available in the dataframe, it will use it.
 
 See `data_preparation/` for how to produce this dataset from raw cohort files.
 
@@ -105,17 +105,21 @@ sbatch --job-name=job_name \
 ---
 
 ## Ablations
+All GRPO hyperparameters are defined in:
 
+```
+recipes/Qwen2.5-3B-Instruct/grpo/config_*.yaml
+```
 The paper includes four training variants. Select the appropriate config to reproduce each:
 
 | Variant | Config | Description |
 |---------|--------|-------------|
-| `LUNAR` | `config_lunar.yaml` | Full model — oversampling + SCe advantage |
-| `LUNAR-OS` | `config_lunar_os.yaml` | SCe advantage only, no oversampling |
-| `LUNAR-SCe` | `config_lunar_sce.yaml` | Oversampling only, standard reward advantage |
-| `LUNAR-OS-SCe` | `config_lunar_os_sce.yaml` | Vanilla Dr.GRPO — no oversampling, no SCe |
+| `LUNAR` | `config_nacc_inc_oversample_sce_tanh.yaml` | Full model — oversampling + SCe advantage |
+| `LUNAR-SCe` | `config_nacc_inc_oversample.yaml` | Oversampling only, standard reward advantage |
+| `LUNAR-OS` | `config_nacc_inc_oversample_dedup_sce_tanh.yaml` | SCe advantage only, no oversampling |
+| `LUNAR-OS-SCe` | `config_nacc_inc_oversample_dedup.yaml` | Vanilla Dr.GRPO — no oversampling, no SCe |
 
-Each config follows the same structure as `config_lunar.yaml`. Toggle oversampling and the SCe advantage using the relevant flags documented inside the config files.
+Each config follows the same structure as `config_nacc_inc_oversample_sce_tanh.yaml`. Toggle oversampling and the SCe advantage using the relevant flags documented inside the config files.
 
 ---
 
@@ -126,7 +130,7 @@ A supervised fine-tuning (SFT) baseline is provided for comparison. It uses the 
 All SFT hyperparameters are defined in:
 
 ```
-recipes/Qwen2.5-3B-Instruct/sft/config_lunar_sft.yaml
+recipes/Qwen2.5-3B-Instruct/sft/config_nacc_inc_oversample.yaml
 ```
 
 Launch with:
