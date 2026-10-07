@@ -58,13 +58,17 @@ peft
 **Evaluation & data analysis environment**
 
 ```
-Python        3.12.4
-torch         2.4.0
-vllm          0.12.0
-pandas        2.2.2
-numpy         1.26.3
-scikit-learn  1.5.1
-scipy         1.14.0
+Python        3.12.11
+pandas        3.0.0
+numpy         2.2.6
+matplotlib    3.10.8
+torch         2.9.0
+vllm          0.11.2
+transformers  4.57.6
+scikit-learn  1.8.0
+scipy         1.17.0
+statsmodels   0.15.0
+seaborn       0.13.2
 ```
 
 ## Installation
