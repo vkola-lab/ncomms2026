@@ -123,10 +123,6 @@ Fine-tune LUNAR on top of Qwen2.5-3B-Instruct using the open-r1 RLVR pipeline. S
 
 Evaluate LUNAR on all ADRD tasks and plot the results. See [`adrd_simplified_evaluation/README.md`](adrd_simplified_evaluation/README.md) for details.
 
-## Run time
-
-Each RL training run used four NVIDIA H200 GPUs, with an average runtime of 9 hours (1491 steps; 1 epoch), and each SFT run used 2 NVIDIA H200 GPUs, with an average runtime of 4.5 hours. Inference on individual cases on an NVIDIA L40S GPU required less than one minute.
-
 ## Method Summary
 
 LUNAR fine-tunes **Qwen2.5-3B-Instruct** using **Dr.GRPO** (Done Right Group Relative Policy Optimization) with two key additions:
