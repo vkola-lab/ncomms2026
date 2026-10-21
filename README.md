@@ -14,7 +14,7 @@
 Model development and validation leveraged data from five ADRD cohorts totaling 54,535 participants (NACC, ADNI, BrainLat, NIFD, PPMI). The framework integrates demographics, personal and family medical histories, medication use, neuropsychological test results, functional assessments, physical and neurological examination findings, laboratory data, and multimodal neuroimaging to construct comprehensive clinical profiles. On held-out testing data involving 36,688 participants, LUNAR achieved robust performance on syndromic classification, primary etiological diagnosis, and biomarker prediction. Model predictions were validated against postmortem-confirmed diagnoses, and clinical utility was demonstrated in a controlled within-subjects crossover study where board-certified neurologists reviewed cases with and without model assistance, showing that exposure to model responses improved diagnostic performance.
 
 <p align="center">
-  <img src="schematic.png" alt="LUNAR Model Overview Schematic" width="700"/>
+  <img src="fig1_schematic.png" alt="LUNAR Model Overview Schematic" width="700"/>
 </p>
 
 
