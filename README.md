@@ -2,9 +2,9 @@
 
 <p align="center">
   <a href="https://www.medrxiv.org/content/10.64898/2026.03.17.26348154v1"><img src="https://img.shields.io/badge/Paper-medRxiv-B31B1B?style=flat-square" alt="Paper"></a>
+  <a href="https://huggingface.co/vkola-lab/LUNAR"><img src="https://img.shields.io/badge/🤗%20Model-Hugging%20Face-FFD21E?style=flat-square" alt="Hugging Face Model"></a>
   <a href="https://github.com/vkola-lab/lunar/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square" alt="License"></a>
   <img src="https://img.shields.io/badge/Python-3.11%2B-brightgreen?style=flat-square" alt="Python">
-  <!-- <img src="https://img.shields.io/badge/Model-Qwen2.5--3B-Instructorange?style=flat-square" alt="Model"> -->
 </p>
 
 ## Overview
